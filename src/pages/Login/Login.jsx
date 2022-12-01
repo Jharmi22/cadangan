@@ -1,4 +1,4 @@
-import { GoogleLogin, GoogleLogout } from "react-google-login";
+// import { GoogleLogin, GoogleLogout } from "react-google-login";
 import { useEffect, useState } from "react";
 import "./Login.css";
 import AOS from "aos";
@@ -172,7 +172,7 @@ function Login() {
             <div className="row d-flex justify-content-center">
               <div className="col-12" style={{ textAlign: "center", padding: "6rem" }}>
                 <div className="col-12 mb-3" id="signInDiv">
-                  <GoogleLogout clientId={clientId} buttonText="Logout" onLogoutSuccess={signoutSuccess} />
+                  {/* <GoogleLogout clientId={clientId} buttonText="Logout" onLogoutSuccess={signoutSuccess} /> */}
                 </div>
               </div>
             </div>
