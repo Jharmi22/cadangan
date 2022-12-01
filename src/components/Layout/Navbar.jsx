@@ -28,7 +28,7 @@ const Navbar = () => {
           <nav className="navbar navbar-expand-lg fixed-top">
             <div className="container">
               <Link className="navbar-brand" to="/">
-                <img style={{ width: 40 }} src={require("../../assets/brand.png")} alt="" />
+                <img style={{ width: 40 }} src={require("../../assets/logo.jpg")} alt="" />
               </Link>
               <Link to="/Login">
                 <div className="pl-3 pr-3">
@@ -60,9 +60,6 @@ const Navbar = () => {
                       <Link className="nav-link" to="/Artikel">
                         Artikel
                       </Link>
-                      <Link className="nav-link" to="/TipsKesehatan">
-                        Tips Kesehatan
-                      </Link>
 
                       <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav ms-auto">
@@ -78,19 +75,14 @@ const Navbar = () => {
                           Artikel
                         </Link>
                       </li>
-                      <li>
+                      {/* <li>
                         <Link className="nav-link" to="/BuatArtikel">
                           Buat Artikel
                         </Link>
-                      </li>
-                      <li className="nav-item">
-                        <Link className="nav-link" to="/TipsKesehatan">
-                          Tips Kesehatan
-                        </Link>
-                      </li>
+                      </li> */}
                       <li>
-                        <Link className="nav-link" to="/BuatTips">
-                          Buat Tips
+                        <Link className="nav-link" to="/Profile">
+                          Profile
                         </Link>
                       </li>
                     </>
@@ -107,7 +99,7 @@ const Navbar = () => {
           <nav className="navbar navbar-expand-lg fixed-top">
             <div className="container">
               <Link className="navbar-brand" to="/">
-                <img style={{ width: 40 }} src={require("../../assets/brand.png")} alt="" />
+                <img style={{ width: 40 }} src={require("../../assets/logo.jpg")} alt="" />
               </Link>
               <Link to="/login" ripple="light" style={{ textDecoration: "none" }}>
                 Login
@@ -138,9 +130,7 @@ const Navbar = () => {
                   {/* <Link className="nav-link" to="/Login" onClick={() => tes()}>
                     Baby Shop
                   </Link> */}
-                  <Link className="nav-link" to="/Login" onClick={() => tes()}>
-                    Tips Kesehatan
-                  </Link>
+                  
                 </ul>
               </div>
             </div>
@@ -152,7 +142,7 @@ const Navbar = () => {
           <nav className="navbar navbar-expand-lg fixed-top">
             <div className="container">
               <Link className="navbar-brand" to="/">
-                <img style={{ width: 40 }} src={require("../../assets/brand.png")} alt="" />
+                <img style={{ width: 40 }} src={require("../../assets/logo.jpg")} alt="" />
               </Link>
               <Link to="/Login">
                 <div className="pl-3 pr-3">
@@ -184,38 +174,7 @@ const Navbar = () => {
                       Artikel
                     </Link>
                   </li>
-                  {/* <div className="collapse navbar-collapse" id="navbarNav">
-                    <ul className="navbar-nav ms-auto">
-                      <div className="dropdown nav-link" style={{ marginTop: "-0.2rem" }}>
-                        <button style={{ color: "black", fontSize: "20px" }} className="btn dropdown-toggle" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                          Baby Shop
-                        </button>
-                        <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                          <li>
-                            <Link className="dropdown-item" to="/BabyShop">
-                              Shop
-                            </Link>
-                          </li>
-                          <li>
-                            <Link className="dropdown-item" to="/keranjang" smooth>
-                              Keranjang
-                            </Link>
-                          </li>
-                          <li>
-                            <Link className="dropdown-item" to="/Pembayaran" smooth>
-                              Pembayaran
-                            </Link>
-                          </li>
-                          <li>
-                            <Link className="dropdown-item" to="/Pemesanan" smooth>
-                              Pemesanan
-                            </Link>
-                          </li>
-                        </ul>
-                      </div>
-                    </ul>
-                  </div> */}
-
+                  
                 </ul>
               </div>
             </div>

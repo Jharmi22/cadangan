@@ -9,7 +9,7 @@ function Registrasi() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
-  const [jenis, setJenis] = useState("");
+  const [phone, setPhone] = useState("");
   const navigate = useNavigate();
   const [change, setChange] = useState("password");
   const [isiregist, setIsiRegist] = useState([]);
@@ -28,7 +28,7 @@ function Registrasi() {
   };
 
   const setUser = async () => {
-    if (name === "" || email === "" || password === "" || role === "" || jenis === undefined) {
+    if (name === "" || email === "" || phone === "" || password === "" || role === "") {
       Swal.fire({
         icon: "error",
         title: "Oops!",
@@ -41,24 +41,41 @@ function Registrasi() {
         icon: "success",
         confirmButtonText: '<i className="fa fa-thumbs-up"></i> Great!',
       });
-      navigate("/");
-      let dataRegist = {
-        name,
-        email,
-        password,
-        role,
-        jenis,
-      };
+      
+      // let dataRegist = {
+      //   name,
+      //   email,
+      //   jenis,
+      //   password,
+      //   role,
+      // };
 
-      fetch("https://631cc4864fa7d3264cb66955.mockapi.io/UserRegist", {
-        method: "POST",
-        body: JSON.stringify(dataRegist),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then((response) => JSON.parse(response))
-        .then((data) => setIsiRegist(data));
+      let regis = {
+        "nama":name,
+        "email":email,
+        "password":password,
+        "phone":"08234234",
+        "role":role
+      }
+
+      console.log(regis);
+      try {
+        let h = await fetch("https://bronze-cape-buffalo-sari.cyclic.app/user/register", {
+          method: "POST",
+          body: JSON.stringify(regis),
+          headers: {
+            'Accept': '*/*',
+            'Content-Type': 'application/json'
+          }
+        })
+        h = await h.json()
+        console.log(h);
+        
+      } catch (error) {
+        console.log(error);
+      }
+
+        navigate("/");
       // if (isiregist === null) {
       //   setIsiRegist([dataRegist]);
       //   localStorage.setItem("userRegist", JSON.stringify([dataRegist]));
@@ -105,12 +122,16 @@ function Registrasi() {
                 </div>
 
                 <div className="col-md-12">
+                  <input className="form-control" type="number" name="phone" placeholder="No.WhatshApp" required onChange={(e) => setPhone(e.target.value)} />
+                </div>
+
+                <div className="col-md-12">
                   <select className="form-select mt-3" required onChange={(e) => setRole(e.target.value)}>
-                    <option value="Dokter" selected disabled>
-                      Position
+                    <option value="dokter" selected disabled>
+                      Role
                     </option>
-                    <option value="Dokter">Dokter</option>
-                    <option value="User">User</option>
+                    <option value="dokter">Dokter</option>
+                    <option value="user">User</option>
                   </select>
                   <div className="valid-feedback">You selected a position!</div>
                 </div>
@@ -133,24 +154,7 @@ function Registrasi() {
                     </>
                   )}
                 </div>
-                <div className="col-md-12 mt-3">
-                  <label className="mb-3 mr-1 jenis" htmlFor="gender">
-                    Gender :
-                  </label>
 
-                  <input type="radio" className="btn-check" name="gender" id="Laki-laki" autoComplete="off" required onChange={(e) => setJenis(e.target.id)} />
-                  <label className="btn btn-sm btn-outline-primary jenis" htmlFor="Laki-laki">
-                    Male
-                  </label>
-
-                  <input type="radio" className="btn-check" name="gender" id="Perempuan" autoComplete="off" required onChange={(e) => setJenis(e.target.id)} />
-                  <label className="btn btn-sm btn-outline-primary jenis" htmlFor="Perempuan">
-                    Female
-                  </label>
-
-                  <div className="valid-feedback mv-up">You selected a gender!</div>
-                  <div className="invalid-feedback mv-up">Please select a gender!</div>
-                </div>
                 <div className="text-center mt-2">
                   <label className="form-check-label">
                     <b>I confirm that all data are correct and can be responsible</b>{" "}

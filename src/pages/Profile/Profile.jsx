@@ -1,26 +1,27 @@
 import React from "react";
 import Aos from "aos";
-import "aos/dist/aos.css";
 import Navbar from "../../components/Layout/Navbar";
-import DaftarTips from "../../components/DaftarTips/DaftarTips";
+import "./Profile.css";
+import DataProfile from "../../components/DataProfile/DataProfile";
 
-function TipsKesehatan() {
+import { Search } from "react-bootstrap-icons";
+
+function Profile() {
   Aos.init();
   return (
     <>
       <Navbar />
-      <section className="page-section" id="artikel">
+      <section className="page-section" id="Profile">
         <div className="container">
           <div className="text-center">
             <h2 id="tagline" className="section-heading">
-              Daftar Konsultasi
+              Profile
             </h2>
-            <h5 className="section-subheading">Daftar Konsultasi yang diberikan oleh Pasien</h5>
             <hr />
           </div>
           <div className="container">
             <div data-aos="zoom-in" data-aos-duration="2000">
-              <DaftarTips />
+              <DataProfile />
             </div>
           </div>
         </div>
@@ -29,4 +30,4 @@ function TipsKesehatan() {
   );
 }
 
-export default TipsKesehatan;
+export default Profile;

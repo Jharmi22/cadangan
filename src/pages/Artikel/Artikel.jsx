@@ -3,7 +3,6 @@ import Aos from "aos";
 import Navbar from "../../components/Layout/Navbar";
 import "./Artikel.css";
 import DaftarArtikel from "../../components/DaftarArtikel/DaftarArtikel";
-import { Search } from "react-bootstrap-icons";
 
 function Artikel() {
   Aos.init();
@@ -19,11 +18,8 @@ function Artikel() {
             <h5 className="section-subheading">Kami menyediakan artikel yang menarik mengenai kesehatan</h5>
             <hr />
           </div>
-          <div className="container">
-            <div data-aos="zoom-in" data-aos-duration="2000">
-              <DaftarArtikel />
-            </div>
-          </div>
+          
+          <DaftarArtikel />
         </div>
       </section>
     </>

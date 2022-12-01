@@ -31,7 +31,7 @@ function Login() {
   // Login via email
   const LoginHandle = async () => {
     try {
-      let hasil = await fetch('https://project-be-production.up.railway.app/user/login', {
+      let hasil = await fetch('https://bronze-cape-buffalo-sari.cyclic.app/user/login', {
         method: 'POST',
         headers: {
           'Accept': '*/*',
@@ -42,12 +42,13 @@ function Login() {
           {email: email, password: password}
           )
       })
-      hasil = hasil.json()
-      if(hasil.status==200){
-          await localStorage.setItem("authToken",hasil.token);
+      hasil = await hasil.json();
+      console.log(hasil);
+      if(hasil.token){
+          localStorage.setItem("authToken",hasil.token);
           
           try {
-            let userData = await fetch('https://project-be-production.up.railway.app/user/profile', {
+            let userData = await fetch('https://bronze-cape-buffalo-sari.cyclic.app/user/profile', {
               method: 'GET',
               headers: {
                 'Accept': 'application/json',
@@ -56,7 +57,7 @@ function Login() {
               }
             })
             userData = await userData.json()
-
+            userData = await userData.data;
             localStorage.setItem("userlogin", JSON.stringify(userData));
           } catch (error) {
             loginFailed();
@@ -67,6 +68,7 @@ function Login() {
             icon: "success",
             confirmButtonText: '<i className="fa fa-thumbs-up"></i> Great!',
           });
+          navigate("/");
       }else{
         throw "Login Salah";
       }
@@ -136,7 +138,8 @@ function Login() {
         setLogoutButton(false);
         setForm(true);
         localStorage.removeItem("token");
-        localStorage.removeItem("userlogin");
+        localStorage.removeItem("userlogin"); 
+        localStorage.removeItem("authToken"); 
         console.clear();
       }
     });

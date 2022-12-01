@@ -11,7 +11,6 @@ function BuatArtikel() {
 
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
-  const [date, setDate] = useState("");
   const [writer, setWriter] = useState("");
   const [contentArticle, setContentArticle] = useState([]);
 
@@ -22,13 +21,12 @@ function BuatArtikel() {
 
   const formhandle = () => {
     let dataArtikel = {
-      title,
-      category,
-      date,
-      writer,
-      contentArticle,
+      "title": title,
+      "category": category,
+      "content": contentArticle,
+      "writter" : JSON.parse(localStorage.getItem("userlogin"))._id
     };
-    if (title === "" || category === "" || date === "" || writer === "" || contentArticle === "") {
+    if (title === "" || category === "" || writer === "" || contentArticle === "") {
       Swal.fire({
         icon: "error",
         title: "Oops!",
@@ -42,11 +40,12 @@ function BuatArtikel() {
       //   localStorage.setItem("formkonsul", JSON.stringify([...isikonsul, datakonsul]));
       //   setIsikonsul([...isikonsul, datakonsul]);
       // }
-      fetch("https://63517f85dfe45bbd55c1db19.mockapi.io/Artikel", {
+      fetch("https://bronze-cape-buffalo-sari.cyclic.app/article/add", {
         method: "POST",
         body: JSON.stringify(dataArtikel),
         headers: {
           "Content-Type": "application/json",
+          "authorization":localStorage.getItem("authToken")
         },
       })
         .then((response) => JSON.parse(response))
@@ -98,15 +97,8 @@ function BuatArtikel() {
                   <input className="form-control" type="text" name="writer" placeholder="Penulis" onChange={(e) => setWriter(e.target.value)} />
                 </div>
                 <div className="col-md-12">
-                  <input className="form-control mt-3" type="date" name="date" placeholder="Tanggal" onChange={(e) => setDate(e.target.value)} />
-                </div>
-                <div className="col-md-12">
                   <input className="form-control mt-3" type="tetx" name="category" placeholder="Kategori" onChange={(e) => setCategory(e.target.value)} />
                 </div>
-                {/* <div className="col-md-12 mt-3">
-                  <input className="form-control" type="number" name="number" placeholder="Phone Number" onChange={(e) => setPhoneNumber(e.target.value)} />
-                  <div className="valid-feedback">Password field is valid!</div>
-                </div> */}
                 <div className="form-group">
                   <textarea className="form-control mt-3" id="exampleFormControlTextarea1" rows="6" placeholder="Tulis artikel anda" onChange={(e) => setContentArticle(e.target.value)}></textarea>
                 </div>

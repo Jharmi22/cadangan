@@ -6,8 +6,8 @@ import Login from "./pages/Login/Login";
 import Registrasi from "./pages/Registrasi/Registrasi";
 import Artikel from "./pages/Artikel/Artikel";
 import BuatArtikel from "./pages/BuatArtikel/BuatArtikel";
-import BuatTips from "./pages/BuatTips/BuatTips";
-import TipsKesehatan from "./pages/TipsKesehatan/TipsKesehatan";
+import Profile from "./pages/Profile/Profile";
+
 
 function App() {
   return (
@@ -18,8 +18,7 @@ function App() {
         <Route path="/Registrasi" element={<Registrasi />} />
         <Route path="/BuatArtikel" element={<BuatArtikel />} />
         <Route path="/Artikel" element={<Artikel />} />
-        <Route path="/BuatTips" element={<BuatTips />} />
-        <Route path="/TipsKesehatan" element={<TipsKesehatan />} />
+        <Route path="/Profile" element={<Profile/>}/>
       </Routes>
       <Footer />
     </div>
