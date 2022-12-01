@@ -60,6 +60,9 @@ const Navbar = () => {
                       <Link className="nav-link" to="/Artikel">
                         Artikel
                       </Link>
+                      <Link className="nav-link" to="/Profile">
+                          Profile
+                      </Link>
 
                       <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav ms-auto">
