@@ -285,7 +285,7 @@ function Login() {
             <div className="form-content">
               <div className="form-items">
                 <h3>Login</h3>
-                <p>Fill in the data below.</p>
+                <p>Silahkan login terlebih dahulu</p>
                 <form className="requires-validation">
                   <div className="col-md-12">
                     <input className="form-control" type="email" name="email" placeholder="E-mail Address" onChange={(e) => setEmail(e.target.value)} />
@@ -303,7 +303,7 @@ function Login() {
                       <>
                         <input className="form-control" type="text" name="password" id="password-input" placeholder="Password" value={password} />
                         <button className="btn-tombol mt-4" onClick={(e) => hidepassword(e.preventDefault())}>
-                          Delete Password
+                          Hide Password
                         </button>
                       </>
                     )}

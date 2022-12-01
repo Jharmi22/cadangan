@@ -110,7 +110,7 @@ function Registrasi() {
           <div className="form-content">
             <div className="form-items">
               <h3>Register Today</h3>
-              <p>Fill in the data below.</p>
+              <p>Silahkan daftar akun terlebih dahulu</p>
               <form className="requires-validation" noValidate>
                 <div className="col-md-12">
                   <input className="form-control" change="text" name="name" placeholder="Full Name" required onChange={(e) => setName(e.target.value)} />
@@ -149,7 +149,7 @@ function Registrasi() {
                     <>
                       <input className="form-control" type="text" name="password" id="password-input" placeholder="Password" value={password} />
                       <button className="btn-tombol mt-4" onClick={(e) => hidepassword(e.preventDefault())}>
-                        Delete Password
+                        Hide Password
                       </button>
                     </>
                   )}

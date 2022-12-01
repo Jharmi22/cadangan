@@ -55,7 +55,7 @@ const Navbar = () => {
                     </ul>
                   </div>
 
-                  {userData.role === "Pasien" ? (
+                  {userData.role === "user" ? (
                     <>
                       <Link className="nav-link" to="/Artikel">
                         Artikel
@@ -75,11 +75,11 @@ const Navbar = () => {
                           Artikel
                         </Link>
                       </li>
-                      {/* <li>
+                      <li>
                         <Link className="nav-link" to="/BuatArtikel">
                           Buat Artikel
                         </Link>
-                      </li> */}
+                      </li>
                       <li>
                         <Link className="nav-link" to="/Profile">
                           Profile
