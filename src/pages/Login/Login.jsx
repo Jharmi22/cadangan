@@ -19,6 +19,7 @@ function Login() {
   const [change, setChange] = useState("password");
   const [loginButton, setLoginButton] = useState(true);
   const [logoutButton, setLogoutButton] = useState(false);
+  const [AuthUser, setAuthUser] = useState(null);
   const [form, setForm] = useState(true);
 
   // logout via email
@@ -28,42 +29,76 @@ function Login() {
   // Akhir Logout via email
 
   // Login via email
-  const LoginHandle = () => {
-    let isFoundUser = null;
-    if (userDataForm) {
-      isFoundUser = userDataForm.find((user) => {
-        return email === user.email && password === user.password && user.role;
-      });
-    }
-    if (isFoundUser && userDataForm.length) {
-      localStorage.setItem("userlogin", JSON.stringify(isFoundUser));
-      Swal.fire({
-        title: "Sweet!",
-        text: "Selamat anda berhasil Login",
-        icon: "success",
-        confirmButtonText: '<i className="fa fa-thumbs-up"></i> Great!',
-      });
-      navigate("/");
-    } else {
+  const LoginHandle = async () => {
+    try {
+      let hasil = await fetch('/user/login', {
+        method: 'POST',
+        headers: {
+          'Accept': '*/*',
+          "User-Agent":"Thunder Client (https://www.thunderclient.com)",
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(
+          {email: email, password: password}
+          )
+      })
+      hasil = hasil.json()
+      if(hasil.status==200){
+          await localStorage.setItem("authToken",hasil.token);
+          
+          try {
+            let userData = await fetch('/user/profile', {
+              method: 'GET',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'authorization':localStorage.getItem("authToken")
+              }
+            })
+            userData = await userData.json()
+
+            localStorage.setItem("userlogin", JSON.stringify(userData));
+          } catch (error) {
+            loginFailed();
+          }
+          await Swal.fire({
+            title: "Sweet!",
+            text: hasil.message,
+            icon: "success",
+            confirmButtonText: '<i className="fa fa-thumbs-up"></i> Great!',
+          });
+      }else{
+        throw "Login Salah";
+      }
+    } catch (error) {
       loginFailed();
     }
+
+
+    
+    // let isFoundUser = null;
+    // if (userDataForm) {
+    //   isFoundUser = userDataForm.find((user) => {
+    //     return email === user.email && password === user.password && user.role;
+    //   });
+    // }
+    // if (isFoundUser && userDataForm.length) {
+    //   localStorage.setItem("userlogin", JSON.stringify(isFoundUser));
+    //   Swal.fire({
+    //     title: "Sweet!",
+    //     text: "Selamat anda berhasil Login",
+    //     icon: "success",
+    //     confirmButtonText: '<i className="fa fa-thumbs-up"></i> Great!',
+    //   });
+    //   navigate("/");
+    // } else {
+    //   loginFailed();
+    // }
   };
   // Akhir login via email
 
   // Login via google
-  const loginSuccess = (res) => {
-    Swal.fire({
-      title: "Sweet!",
-      icon: "success",
-      text: "Selamat anda berhasil Login",
-      confirmButtonText: '<i className="fa fa-thumbs-up"></i> Great!',
-    });
-    navigate("/");
-    localStorage.setItem("token", res.tokenId);
-    setLoginButton(false);
-    setLogoutButton(true);
-    setForm(false);
-  };
+ 
   // AKhir login via google
 
   const failureSuccess = (res) => {
@@ -283,7 +318,7 @@ function Login() {
                     </button>
                   </div>
                   <div className="col-12 mb-3">
-                    <GoogleLogin clientId={clientId} buttonText="Continue With Google" onSuccess={loginSuccess} onFailure={failureSuccess} cookiePolicy={"single_host_origin"} />
+                    {/* <GoogleLogin clientId={clientId} buttonText="Continue With Google" onSuccess={loginSuccess} onFailure={failureSuccess} cookiePolicy={"single_host_origin"} /> */}
                   </div>
                   <div className="text-center">
                     <h6 style={{ color: "black" }}>
