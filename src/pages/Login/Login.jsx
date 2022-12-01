@@ -31,7 +31,7 @@ function Login() {
   // Login via email
   const LoginHandle = async () => {
     try {
-      let hasil = await fetch('/user/login', {
+      let hasil = await fetch('https://project-be-production.up.railway.app/user/login', {
         method: 'POST',
         headers: {
           'Accept': '*/*',
@@ -47,7 +47,7 @@ function Login() {
           await localStorage.setItem("authToken",hasil.token);
           
           try {
-            let userData = await fetch('/user/profile', {
+            let userData = await fetch('https://project-be-production.up.railway.app/user/profile', {
               method: 'GET',
               headers: {
                 'Accept': 'application/json',
